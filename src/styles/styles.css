@@ -1,0 +1,130 @@
+section {
+  border: 2px black solid;
+  margin: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+div {
+  border: 1px lightslategray solid;
+}
+
+div.top-button {
+  margin-bottom: 15px;
+}
+
+.button,
+.bottom-button {
+  text-align: center;
+}
+
+button {
+  border-radius: 5px;
+  width: 75px;
+  height: 25px;
+}
+
+button.site-link,
+button.delete {
+  width: 58px;
+  height: 20px;
+}
+
+button.new,
+button.create {
+  color: white;
+  background-color: #1fad9d;
+}
+
+button.filter,
+button.create {
+  background-color: #3297fc;
+  color: white;
+}
+
+button.clear-filter,
+button.cancel {
+  background-color: #fe654f;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+button.cancel,
+button.delete {
+  background-color: #fe654f;
+}
+
+button.site-link {
+  background-color: #b7d3f2;
+}
+
+input[type="submit"] {
+  background-color: #3297fc;
+  color: white;
+  border-radius: 5px;
+  width: 75px;
+  height: 25px;
+}
+
+div.indented {
+  padding-top: 10px;
+  margin-left: 20px;
+}
+
+div p {
+  text-align: justify;
+}
+
+h1 {
+  text-align: center;
+}
+
+h3 {
+  background-color: #1fad9d;
+  border-radius: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+div#ratings.ratings {
+  margin: auto;
+  width: 33%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* .form {
+    margin-bottom: 10px;
+  } */
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin: 8px 0px;
+  text-align: left;
+}
+
+input[class="error-placeholder"]::placeholder {
+  color: orange;
+}
+
+textarea[class="error-placeholder"]::placeholder {
+  color: orange;
+}
+
+/* Media query for desktop CSS declarations */
+@media all and (min-width: 600px) {
+  section {
+    border: 2px black solid;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 40px;
+  }
+}
