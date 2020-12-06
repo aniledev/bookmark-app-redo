@@ -21,11 +21,17 @@ const generateHomeScreen = function () {
 </div>
 <div id="bookmarks" class="bookmarks">
   <h3>Title 11</h3>
+    <div>Description</div>
   <h3>Title 10</h3>
+    <div>Description</div>
   <h3>Title 9</h3>
+    <div>Description</div>
   <h3>Title 8</h3>
+    <div>Description</div>
   <h3>Title 7</h3>
+    <div>Description</div>
   <h3>Title 6</h3>
+    <div>Description</div>
 </div>`;
 };
 
@@ -76,7 +82,6 @@ const generateAddForm = function () {
     ></textarea>
   </form>
 </div>
-<div id="bookmarks" class="bookmarks"></div>
 <div class="bottom-button">
   <button type="text" id="cancel" class="cancel">Cancel</button>
   <input type="submit" id="create" class="create" value="Create"></input>
@@ -199,6 +204,18 @@ ${filteredBookmarkString.join("")}
 const generateNewBookmark = function (object) {
   console.log("single bookmark generated function");
   return `<div id="item-title" class="item-title" data-clicked-id="${object.id}"><h3>${object.title}</h3></div>`;
+};
+
+const generateNewBookmarkExpanded = function (object) {
+  console.log("single expanded bookmark generated funciton");
+  return `<div id="item-title" class="item-title" data-clicked-id="${object.id}">
+    <h3>${object.title}</h3>
+    <div class="indented" id="indented">
+      <button id="site-link" class="site-link">Site</button>
+      <button id="delete" class="delete" delete>Delete</button>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia tempora corrupti soluta quod delectus! Modi nobis distinctio laudantium quis. Officia, labore sit quas eveniet illum ipsa nobis nam aperiam nostrum? Molestiae non culpa nisi porro. Sed ducimus neque aut officiis vero nostrum tempora blanditiis cum placeat ratione, illo dolore nobis.</p>
+    </div>
+  </div>`;
 };
 
 // this function generates the string for all the bookmarks to be rendered
