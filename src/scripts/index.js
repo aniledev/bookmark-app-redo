@@ -203,13 +203,15 @@ ${filteredBookmarkString.join("")}
 // this function generates the html for a single bookmark title
 const generateNewBookmark = function (object) {
   console.log("single bookmark generated function");
-  return `<div id="item-title" class="item-title" data-clicked-id="${object.id}"><h3>${object.title}</h3></div>`;
+  return `<div >
+  <div id="item-title" class="item-title" data-clicked-id="${object.id}"><h3>${object.title}</h3></div>
+  </div>`;
 };
 
 const generateNewBookmarkExpanded = function (object) {
-  console.log("single expanded bookmark generated funciton");
-  return `<div id="item-title" class="item-title" data-clicked-id="${object.id}">
-    <h3>${object.title}</h3>
+  console.log("single expanded bookmark generated function");
+  return `<div>
+  <div id="item-title" class="item-title" data-clicked-id="${object.id}"><h3>${object.title}</h3></div>
     <div class="indented" id="indented">
       <button id="site-link" class="site-link">Site</button>
       <button id="delete" class="delete" delete>Delete</button>
