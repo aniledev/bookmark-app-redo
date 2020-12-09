@@ -211,12 +211,20 @@ const generateNewBookmark = function (object) {
 const generateNewBookmarkExpanded = function (object) {
   console.log("single expanded bookmark generated function");
   return `<div>
-  <div id="item-title" class="item-title" data-clicked-id="${object.id}"><h3>${object.title}</h3></div>
+  <div id="item-title" class="item-title" data-clicked-id="${object.id}"><h3>${
+    object.title
+  }</h3></div>
     <div class="indented" id="indented">
       <button id="site-link" class="site-link">
-      <a id="link" class="link" href="https://${object.url} target="_blank"">Site</a></button>
+      <a id="link" class="link" href="https://${
+        object.url
+      } target="_blank"">Site</a></button>
       <button id="delete" class="delete" delete>Delete</button>
-      <p>${object.description}</p>
+      <p>${
+        object.description.length === 0
+          ? "<p>No description</p>"
+          : `<p>${object.description}</p>`
+      }</p>
     </div>
   </div>`;
 };
