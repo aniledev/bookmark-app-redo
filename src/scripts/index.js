@@ -213,7 +213,8 @@ const generateNewBookmarkExpanded = function (object) {
   return `<div>
   <div id="item-title" class="item-title" data-clicked-id="${object.id}"><h3>${object.title}</h3></div>
     <div class="indented" id="indented">
-      <button id="site-link" class="site-link">Site</button>
+      <button id="site-link" class="site-link">
+      <a id="link" class="link" href="https://${object.url} target="_blank"">Site</a></button>
       <button id="delete" class="delete" delete>Delete</button>
       <p>${object.description}</p>
     </div>
