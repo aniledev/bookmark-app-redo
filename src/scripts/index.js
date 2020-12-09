@@ -230,7 +230,9 @@ const generateNewBookmarkExpanded = function (object) {
       <a id="link" class="link" href="https://${
         object.url
       } target="_blank"">Site</a></button>
-      <button id="delete" class="delete" delete>Delete</button>
+      <button id="delete" class="delete" delete data-clicked-id="${
+        object.id
+      }">Delete</button>
       <p>${
         object.description.length === 0
           ? "<p>No description</p>"
@@ -377,11 +379,20 @@ const handleFilterDropdown = function () {
 };
 
 const handleDeleteItemClick = function () {
-  $(".bookmark").on("click", ".delete", (event) => {
-    // code that you want to execute
+  $("main").on("click", ".delete", function () {
     //console log that user clicked button
+    console.log("user clicked delete button");
+    event.preventDefault();
+    // change the state of the store
+    // store.adding === false;
+    // store.filtering === false;
+    // store.error === null;
+    // // create a variable that is assigned to the data of the id gerenreate by the cuid
+    // const DeleteId = $(this).attr("data-clicked-id");
+    // console.log(DeleteId);
     // when user clicks delete button, use splice to remove specific bookmark from store
-    console.log("delete bookmark button clicked");
+    // create a function that removes that id from the bookmarks array
+    // call the gnereateBookmarkString() and then
     // render();
   });
 };
@@ -585,6 +596,7 @@ function main() {
   handleFilterDropdown();
   handleClearFilterClick();
   handleBookmarkClick();
+  handleDeleteItemClick();
 }
 
 // this function is the only function that stays in the index.js file once you modularize the tile structure
