@@ -230,7 +230,7 @@ const generateNewBookmarkExpanded = function (object) {
       <a id="link" class="link" href="https://${
         object.url
       } target="_blank"">Site</a></button>
-      <button id="delete" class="delete" delete data-clicked-id="${
+      <button id="delete" class="delete" data-clicked-id="${
         object.id
       }">Delete</button>
       <p>${
@@ -384,16 +384,18 @@ const handleDeleteItemClick = function () {
     console.log("user clicked delete button");
     event.preventDefault();
     // change the state of the store
-    // store.adding === false;
-    // store.filtering === false;
-    // store.error === null;
+    store.adding === false;
+    store.filtering === false;
+    store.error === null;
     // // create a variable that is assigned to the data of the id gerenreate by the cuid
-    // const DeleteId = $(this).attr("data-clicked-id");
-    // console.log(DeleteId);
+    const DeleteId = $(this).attr("data-clicked-id");
+    console.log(DeleteId);
     // when user clicks delete button, use splice to remove specific bookmark from store
+    deleteBookmarkObject(DeleteId);
     // create a function that removes that id from the bookmarks array
     // call the gnereateBookmarkString() and then
-    // render();
+    generateBookmarksString();
+    render();
   });
 };
 
@@ -531,6 +533,11 @@ const expandBookmarkToggle = function (id) {
   console.log("bookmark expand toggled");
 };
 
+const deleteBookmarkObject = function (id) {
+  console.log("delete bookmark function called");
+  let bookmarkRemove = findBookmarkById(id);
+  store.bookmarks.splice(bookmarkRemove, 1);
+};
 // RENDER FUNCTION
 const render = function () {
   // if there is an error on the form, generate and give to dom
