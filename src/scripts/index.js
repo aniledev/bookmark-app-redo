@@ -213,7 +213,7 @@ const generateNewBookmarkExpanded = function (object) {
     <div class="indented" id="indented">
       <button id="site-link" class="site-link">Site</button>
       <button id="delete" class="delete" delete>Delete</button>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia tempora corrupti soluta quod delectus! Modi nobis distinctio laudantium quis. Officia, labore sit quas eveniet illum ipsa nobis nam aperiam nostrum? Molestiae non culpa nisi porro. Sed ducimus neque aut officiis vero nostrum tempora blanditiis cum placeat ratione, illo dolore nobis.</p>
+      <p>${object.description}</p>
     </div>
   </div>`;
 };
@@ -368,7 +368,7 @@ const handleBookmarkClick = function () {
   $("main").on("click", ".item-title", function () {
     event.preventDefault();
     console.log("expand bookmark clicked");
-    //change the stae of the store
+    //change the state of the store
     store.adding === false;
     store.filtering === false;
     store.error === null;
@@ -377,7 +377,7 @@ const handleBookmarkClick = function () {
     console.log(clickedId);
     expandBookmarkToggle(clickedId);
     generateBookmarksString();
-
+    render();
     // console log that user clicked button
     // for that item change expanded in store to true
     // render new html for expanded bookmark
