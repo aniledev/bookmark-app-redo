@@ -203,18 +203,25 @@ ${filteredBookmarkString.join("")}
 // this function generates the html for a single bookmark title
 const generateNewBookmark = function (object) {
   console.log("single bookmark generated function");
+  let starRating = generateStars(object);
   return `<div >
-  <div id="item-title" class="item-title" data-clicked-id="${object.id}"><h3>${object.title}</h3></div>
+  <div id="item-title" class="item-title" data-clicked-id="${object.id}">
+  <div id="title-rating" class="title-rating flex">
+  <h3>${object.title}</h3>
+  <p>${starRating}</p>
+  </div>
+  </div>
   </div>`;
 };
 
 const generateNewBookmarkExpanded = function (object) {
   console.log("single expanded bookmark generated function");
+  let starRating = generateStars(object);
   return `<div>
   <div id="item-title" class="item-title" data-clicked-id="${object.id}">
   <div id="title-rating" class="title-rating flex">
   <h3>${object.title}</h3>
-  <p>Rating goes here</p>
+  <p>${starRating}</p>
   </div>
   
   </div>
@@ -257,6 +264,19 @@ const generateBookmarksString = function (object) {
 <div id="bookmarks" class="bookmarks">
 ${bookmarks.join("")}
 </div>`;
+};
+
+const generateStars = function (object) {
+  let starRating;
+  let starsChecked = object.rating;
+  let starsUnchecked = 5 - object.rating;
+  const starsCheckedTemplate = `<i class="fas fa-star fa-sm"></i>`;
+  const starsUncheckedTemplate = `<i class="far fa-star fa-sm"></i>`;
+  starRating =
+    starsCheckedTemplate.repeat(starsChecked) +
+    starsUncheckedTemplate.repeat(starsUnchecked);
+  console.log(starRating);
+  return starRating;
 };
 
 // this function generates the string for the form error
