@@ -227,17 +227,9 @@ const generateNewBookmarkExpanded = function (object) {
   </div>
     <div class="indented" id="indented">
       <button id="site-link" class="site-link">
-      <a id="link" class="link" href="https://${
-        object.url
-      } target="_blank"">Site</a></button>
-      <button id="delete" class="delete" data-clicked-id="${
-        object.id
-      }">Delete</button>
-      <p>${
-        object.desc.length === 0
-          ? "<p>No description</p>"
-          : `<p>${object.desc}</p>`
-      }</p>
+      <a id="link" class="link" href="${object.url}" target="_blank">Site</a></button>
+      <button id="delete" class="delete" data-clicked-id="${object.id}">Delete</button>
+      <p>${object.desc}</p>
     </div>
   </div>`;
 };
@@ -460,13 +452,12 @@ const handleCreateItemClick = function () {
     formErrorState();
     console.log(STORE.error);
     addNewBookmark(); // this fucntion will call addNewBookmark() as well as createBookmarkObject()
-    postBookmarkAPI();
+
     // when the user inputs information into the form, capture the info in way that can be added into the STORE
     // use .val to capture the input values and set to values to pass into factory function
     // call the addNewBookmark function to add bookmark and change the state of the STORE
     STORE.adding = false;
     STORE.filtering = false;
-    render();
   });
 };
 
@@ -481,13 +472,10 @@ const createBookmarkObject = function () {
   const bookmarkTitle = $(".bookmark-title").val();
 
   let object = {
-    id: cuid(),
     title: bookmarkTitle,
     url: url,
     rating: rating,
     desc: description,
-    expanded: false,
-    filtered: false,
   };
 
   console.log(object);
@@ -496,16 +484,26 @@ const createBookmarkObject = function () {
 
 console.log(createBookmarkObject());
 
+const addNewAPIBookmark = function () {};
+
 const addNewBookmark = function () {
   // this function needs to push the API data not the const STORE data
   if (STORE.error != "title") {
     console.log("add bookmark function invoked");
     // invoke factory function when submit is clicked, factory function returns an object to push to the STORE
-    let newBookmark = createBookmarkObject();
+    let newBookmark = createBookmarkObject(); // object needs tp be created first
+
+    console.log(newBookmark);
+    postBookmarkAPI(newBookmark).then((data) => {
+      data.expanded = false;
+      data.filtered = false;
+      STORE.bookmarks.push(data);
+      console.log(STORE.bookmarks);
+      render();
+    }); // once the object is created the bookmark can be stringified and sent as a post requeest in the proper format
+    // once the object is created then send a post request to the api
     // push the new bookmark to the STORE using .push()
-    console.log(STORE.bookmarks);
-    STORE.bookmarks.push(newBookmark);
-    console.log(STORE.bookmarks);
+
     // call the render function to show the new state of the STORE
     // add a try catch block to handle errors
   }
@@ -554,14 +552,13 @@ const deleteBookmarkAPI = function () {};
 const getBookmarksAPI = function () {};
 
 // write a function that sends a post request to the api, that stores bookmark in the server
-const postBookmarkAPI = function (object) {
-  console.log("post api function running");
+const postBookmarkAPI = function (newBookmark) {
+  console.log("post api function running", newBookmark);
   // this function needs to be triggered when the form is submitted
   // this function needs to take in the object data when the input form is submitted
   // the data from the object needs to be converted to JSON
-  let newBookmarkJSON = JSON.stringify(createBookmarkObject());
+  let newBookmarkJSON = JSON.stringify(newBookmark);
   console.log(newBookmarkJSON);
-  debugger;
   // using the base url and fetch, a post request needs to be sent to the API server with the correct headers and request body in the form of JSON data
   const params = {
     headers: { "Content-Type": "application/json" },
@@ -569,12 +566,9 @@ const postBookmarkAPI = function (object) {
     method: "POST",
   };
 
-  fetch(BASE_URL, params)
+  return fetch(BASE_URL, params)
     .then((data) => {
       return data.json();
-    })
-    .then((res) => {
-      console.log(res);
     })
     .catch((error) => console.log(error));
 };
