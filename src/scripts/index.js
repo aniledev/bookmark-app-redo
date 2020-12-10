@@ -450,14 +450,15 @@ const handleCreateItemClick = function () {
     event.preventDefault();
     console.log("form submitted");
     formErrorState();
+    STORE.adding = false;
+    STORE.filtering = false;
     console.log(STORE.error);
+    console.log(STORE.adding);
     addNewBookmark(); // this fucntion will call addNewBookmark() as well as createBookmarkObject()
 
     // when the user inputs information into the form, capture the info in way that can be added into the STORE
     // use .val to capture the input values and set to values to pass into factory function
     // call the addNewBookmark function to add bookmark and change the state of the STORE
-    STORE.adding = false;
-    STORE.filtering = false;
   });
 };
 
@@ -483,8 +484,6 @@ const createBookmarkObject = function () {
 };
 
 console.log(createBookmarkObject());
-
-const addNewAPIBookmark = function () {};
 
 const addNewBookmark = function () {
   // this function needs to push the API data not the const STORE data
@@ -549,7 +548,27 @@ const BASE_URL = "https://thinkful-list-api.herokuapp.com/elina/bookmarks";
 const deleteBookmarkAPI = function () {};
 
 // write a function that sends a get request to the api, to get the bookmarks
-const getBookmarksAPI = function () {};
+const getBookmarksAPI = function () {
+  console.log("get api function running");
+  fetch(BASE_URL)
+    .then((response) => {
+      return response.json(); // this data comes back in an array
+    })
+    .then((responseJSON) => {
+      for (let i = 0; i < responseJSON.length; i++) {
+        responseJSON[i].expanded = false;
+        responseJSON[i].filtered = false;
+      }
+      console.log(responseJSON);
+    })
+    .then(resppnse)
+    // .then((bookmarkAPIList) => {
+    //   for (let i = 0; i < bookmarkAPIList.length; i++) {
+    //     STORE.bookmarks.push(bookmarkAPIList[i]);
+    //   }
+    // })
+    .catch((error) => console.log(error));
+};
 
 // write a function that sends a post request to the api, that stores bookmark in the server
 const postBookmarkAPI = function (newBookmark) {
@@ -631,6 +650,7 @@ const render = function () {
 };
 
 function main() {
+  getBookmarksAPI();
   handleNewButtonClick();
   handleCancelClick();
   handleCreateItemClick();
