@@ -558,10 +558,12 @@ const getBookmarksAPI = function () {
       for (let i = 0; i < responseJSON.length; i++) {
         responseJSON[i].expanded = false;
         responseJSON[i].filtered = false;
+        STORE.bookmarks.push(responseJSON[i]);
+        render();
       }
       console.log(responseJSON);
+      console.log(STORE.bookmarks);
     })
-    .then(resppnse)
     // .then((bookmarkAPIList) => {
     //   for (let i = 0; i < bookmarkAPIList.length; i++) {
     //     STORE.bookmarks.push(bookmarkAPIList[i]);
