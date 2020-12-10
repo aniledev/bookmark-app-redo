@@ -1,3 +1,5 @@
+"use strict";
+
 import $ from "jquery";
 import cuid from "cuid";
 //  EXAMPLE STORE DATA SINGLE SOURCE OF TRUTH
@@ -382,8 +384,10 @@ const handleDeleteItemClick = function () {
     // // create a variable that is assigned to the data of the id gerenreate by the cuid
     const DeleteId = $(this).attr("data-clicked-id");
     console.log(DeleteId);
-    // when user clicks delete button, use splice to remove specific bookmark from STORE
     deleteBookmarkObject(DeleteId);
+    console.log(STORE.bookmarks);
+    deleteBookmarkAPI(DeleteId);
+    // when user clicks delete button, use splice to remove specific bookmark from STORE
     // create a function that removes that id from the bookmarks array
     // call the gnereateBookmarkString() and then
     generateBookmarksString();
@@ -520,7 +524,7 @@ const formErrorState = function () {
 const findBookmarkById = function (id) {
   // using the find array method to find where in the bookmarks array the bookmark.id matches the passed in id
   console.log("find bookmark by id function working");
-  let found = STORE.bookmarks.find((bookmark) => bookmark.id === id);
+  let found = STORE.bookmarks.find((bookmark) => bookmark.id == id);
   console.log(`this is before the click: ${found.expanded}`);
   return found;
 };
@@ -535,8 +539,14 @@ const expandBookmarkToggle = function (id) {
 
 const deleteBookmarkObject = function (id) {
   console.log("delete bookmark function called");
+  debugger;
   let bookmarkRemove = findBookmarkById(id);
-  STORE.bookmarks.splice(bookmarkRemove, 1);
+  let remove = JSON.stringify(bookmarkRemove);
+  let index = STORE.bookmarks.indexOf(bookmarkRemove);
+  console.log(index);
+  console.log(`this is the bookmark to remove ${remove}`);
+
+  STORE.bookmarks.splice(index, 1);
 };
 
 // API FUNCTIONS FOR GET AND POST REQUESTS
@@ -545,7 +555,18 @@ const deleteBookmarkObject = function (id) {
 const BASE_URL = "https://thinkful-list-api.herokuapp.com/elina/bookmarks";
 
 // write a function that sends a delete request to the server, that will delete the bookmark from the server
-const deleteBookmarkAPI = function () {};
+const deleteBookmarkAPI = function (id) {
+  console.log("delete api function running");
+  // creating necessary params for API call
+
+  return fetch(`${BASE_URL}/${id}`, {
+    method: "DELETE",
+  });
+  // .then((response) => {
+  //   return response.json();
+  // })
+  // .catch((error) => console.log(error));
+};
 
 // write a function that sends a get request to the api, to get the bookmarks
 const getBookmarksAPI = function () {
