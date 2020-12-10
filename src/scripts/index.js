@@ -1,11 +1,11 @@
 import $ from "jquery";
 import cuid from "cuid";
 //  EXAMPLE STORE DATA SINGLE SOURCE OF TRUTH
-let store = {
+let STORE = {
   bookmarks: [],
   adding: false, // is the new bookmark form showing or not?
   filtering: false, // is the dropdown box for filtering showing or not?
-  filter: 0, // what rating are we filtering for?
+  filter: 0, // what rating  are we filtering for?
   error: null, // is there an error on the new bookmark form or not?
 };
 
@@ -55,7 +55,7 @@ const generateAddForm = function () {
       id="url"
       class="url"
       name="url"
-      placeholder="www.samplesite.com" 
+      placeholder="https://www.samplesite.com" 
     />
     <label for="rating">Rating</label>
     <select
@@ -89,7 +89,7 @@ const generateAddForm = function () {
 };
 
 const generateFilterDropdown = function () {
-  const bookmarks = store.bookmarks.map((element) =>
+  const bookmarks = STORE.bookmarks.map((element) =>
     generateNewBookmark(element)
   );
   return `<div>
@@ -123,13 +123,13 @@ ${bookmarks.join("")}
 
 const generateFilterList = function (object) {
   console.log("filtered list function");
-  // use filter array method to create filtered store.bookmarks based on store.filter selected value
+  // use filter array method to create filtered STORE.bookmarks based on STORE.filter selected value
 
-  const filteredBookmarks = store.bookmarks.filter(
-    (element) => element.rating >= store.filter
+  const filteredBookmarks = STORE.bookmarks.filter(
+    (element) => element.rating >= STORE.filter
   );
-  console.log(store.bookmarks);
-  console.log(store.filter);
+  console.log(STORE.bookmarks);
+  console.log(STORE.filter);
   console.log(filteredBookmarks);
 
   const filteredBookmarkString = filteredBookmarks.map((element) =>
@@ -164,8 +164,8 @@ ${filteredBookmarkString.join("")}
   <button id="clear-filter" class="clear-filter">Clear</button>
 </div>`;
 
-  //   if (store.bookmarks.rating >= store.filter) {
-  //     const bookmarks = store.bookmarks.map((element) =>
+  //   if (STORE.bookmarks.rating >= STORE.filter) {
+  //     const bookmarks = STORE.bookmarks.map((element) =>
   //       generateNewBookmark(element)
   //     );
   //     console.log(bookmarks.join(""));
@@ -234,9 +234,9 @@ const generateNewBookmarkExpanded = function (object) {
         object.id
       }">Delete</button>
       <p>${
-        object.description.length === 0
+        object.desc.length === 0
           ? "<p>No description</p>"
-          : `<p>${object.description}</p>`
+          : `<p>${object.desc}</p>`
       }</p>
     </div>
   </div>`;
@@ -245,7 +245,7 @@ const generateNewBookmarkExpanded = function (object) {
 // this function generates the string for all the bookmarks to be rendered
 const generateBookmarksString = function (object) {
   console.log("bookmark string function");
-  const bookmarks = store.bookmarks.map((element) => {
+  const bookmarks = STORE.bookmarks.map((element) => {
     if (element.expanded === false) {
       return generateNewBookmark(element);
       // if the bookmark expanded === false, use the generateNewBookmark() to map over array
@@ -272,8 +272,8 @@ const generateStars = function (object) {
   let starRating;
   let starsChecked = object.rating;
   let starsUnchecked = 5 - object.rating;
-  const starsCheckedTemplate = `<i class="fas fa-star fa-sm"></i>`;
-  const starsUncheckedTemplate = `<i class="far fa-star fa-sm"></i>`;
+  const starsCheckedTemplate = `<i class="fas fa-star fa-lg"></i>`;
+  const starsUncheckedTemplate = `<i class="far fa-star fa-lg"></i>`;
   starRating =
     starsCheckedTemplate.repeat(starsChecked) +
     starsUncheckedTemplate.repeat(starsUnchecked);
@@ -345,9 +345,9 @@ const handleNewButtonClick = function () {
     // code that you want to execute
     console.log("new item button clicked");
     // when user clicks button, change adding state to true
-    store.adding = true;
+    STORE.adding = true;
     // when user clicks button, change filtering state to false
-    store.filtering = false;
+    STORE.filtering = false;
     // render new html for the form when adding state is true
     render();
   });
@@ -358,9 +358,9 @@ const handleFilterClick = function () {
     // console log to indicate user clicked the button
     console.log("filter button clicked");
     // when user clicks button, change addings state to false
-    store.adding = false;
+    STORE.adding = false;
     // when user clicks button, change filtering state to true
-    store.filtering = true;
+    STORE.filtering = true;
     // render new html for the filter dropdown when filtering state is true
     render();
   });
@@ -370,9 +370,9 @@ const handleFilterDropdown = function () {
   $("main").on("change", ".ratings", function () {
     //code that you want to excute
     console.log("user selected filter");
-    store.filter = $(".ratings option:selected").val();
-    console.log(`the rating is ${store.filter}`);
-    // hide all bookmarks that are less than this rating / show bookmarks that are equal or greater than this rating using the store data
+    STORE.filter = $(".ratings option:selected").val();
+    console.log(`the rating is ${STORE.filter}`);
+    // hide all bookmarks that are less than this rating / show bookmarks that are equal or greater than this rating using the STORE data
     //render the html
     render();
   });
@@ -383,14 +383,14 @@ const handleDeleteItemClick = function () {
     //console log that user clicked button
     console.log("user clicked delete button");
     event.preventDefault();
-    // change the state of the store
-    store.adding === false;
-    store.filtering === false;
-    store.error === null;
+    // change the state of the STORE
+    STORE.adding === false;
+    STORE.filtering === false;
+    STORE.error === null;
     // // create a variable that is assigned to the data of the id gerenreate by the cuid
     const DeleteId = $(this).attr("data-clicked-id");
     console.log(DeleteId);
-    // when user clicks delete button, use splice to remove specific bookmark from store
+    // when user clicks delete button, use splice to remove specific bookmark from STORE
     deleteBookmarkObject(DeleteId);
     // create a function that removes that id from the bookmarks array
     // call the gnereateBookmarkString() and then
@@ -402,10 +402,10 @@ const handleDeleteItemClick = function () {
 const handleClearFilterClick = function () {
   $("main").on("click", ".clear-filter", function () {
     console.log("clear filter button clicked");
-    // change filtering state in store to false
-    store.adding = false;
-    store.filtering = false;
-    store.filter = 0;
+    // change filtering state in STORE to false
+    STORE.adding = false;
+    STORE.filtering = false;
+    STORE.filter = 0;
     // if filtering state is false generate html without dropdown box/home state of app
     render();
   });
@@ -416,10 +416,10 @@ const handleBookmarkClick = function () {
   $("main").on("click", ".item-title", function () {
     event.preventDefault();
     console.log("expand bookmark clicked");
-    //change the state of the store
-    store.adding === false;
-    store.filtering === false;
-    store.error === null;
+    //change the state of the STORE
+    STORE.adding === false;
+    STORE.filtering === false;
+    STORE.error === null;
     // create a variable that is assisgned to the data of the id generated by the cuid
     const clickedId = $(this).attr("data-clicked-id");
     console.log(clickedId);
@@ -427,7 +427,7 @@ const handleBookmarkClick = function () {
     generateBookmarksString();
     render();
     // console log that user clicked button
-    // for that item change expanded in store to true
+    // for that item change expanded in STORE to true
     // render new html for expanded bookmark
     // render();
   });
@@ -438,11 +438,11 @@ const handleCancelClick = function () {
     // code that you want to execute
     console.log("cancel button clicked");
     // when user clicks button, change adding state to false
-    store.adding = false;
+    STORE.adding = false;
     // when user clicks button, change filtering state to false
-    store.filtering = false;
+    STORE.filtering = false;
     // render the home page html based on the condition
-    store.error = null;
+    STORE.error = null;
     render();
   });
 };
@@ -451,20 +451,21 @@ const handleCreateItemClick = function () {
   //the purpose of this function is to capture the values from the input form to be able to use for the factory function
 
   $("main").on("click", ".create", function () {
-    store.error = null;
+    STORE.error = null;
     event.preventDefault();
     console.log("create bookmark button clicked");
     event.preventDefault();
     event.preventDefault();
     console.log("form submitted");
     formErrorState();
-    console.log(store.error);
-    addNewBookmark();
-    // when the user inputs information into the form, capture the info in way that can be added into the store
+    console.log(STORE.error);
+    addNewBookmark(); // this fucntion will call addNewBookmark() as well as createBookmarkObject()
+    postBookmarkAPI();
+    // when the user inputs information into the form, capture the info in way that can be added into the STORE
     // use .val to capture the input values and set to values to pass into factory function
-    // call the addNewBookmark function to add bookmark and change the state of the store
-    store.adding = false;
-    store.filtering = false;
+    // call the addNewBookmark function to add bookmark and change the state of the STORE
+    STORE.adding = false;
+    STORE.filtering = false;
     render();
   });
 };
@@ -472,7 +473,7 @@ const handleCreateItemClick = function () {
 // FUNCTIONS THAT CHANGE THE STATE OF THE STORE
 
 const createBookmarkObject = function () {
-  // this function will take in values from the form and create a new object that can be pushed to the store data
+  // this function will take in values from the form and create a new object that can be pushed to the STORE data
   console.log("create object function working");
   const rating = $(".rating").val();
   const url = $(".url").val();
@@ -482,12 +483,13 @@ const createBookmarkObject = function () {
   let object = {
     id: cuid(),
     title: bookmarkTitle,
-    rating: rating,
     url: url,
-    description: description,
+    rating: rating,
+    desc: description,
     expanded: false,
     filtered: false,
   };
+
   console.log(object);
   return object;
 };
@@ -495,32 +497,33 @@ const createBookmarkObject = function () {
 console.log(createBookmarkObject());
 
 const addNewBookmark = function () {
-  if (store.error != "title") {
+  // this function needs to push the API data not the const STORE data
+  if (STORE.error != "title") {
     console.log("add bookmark function invoked");
-    // invoke factory function when submit is clicked, factory function returns an object to push to the store
+    // invoke factory function when submit is clicked, factory function returns an object to push to the STORE
     let newBookmark = createBookmarkObject();
-    // push the new bookmark to the store using .push()
-    console.log(store.bookmarks);
-    store.bookmarks.push(newBookmark);
-    console.log(store.bookmarks);
-    // call the render function to show the new state of the store
+    // push the new bookmark to the STORE using .push()
+    console.log(STORE.bookmarks);
+    STORE.bookmarks.push(newBookmark);
+    console.log(STORE.bookmarks);
+    // call the render function to show the new state of the STORE
     // add a try catch block to handle errors
   }
 };
 
 const formErrorState = function () {
   if ($(".bookmark-title").val() === "") {
-    store.error = "title";
+    STORE.error = "title";
   }
   if ($(".bookmark-title").val() != "") {
-    store.error = null;
+    STORE.error = null;
   }
 };
 
 const findBookmarkById = function (id) {
   // using the find array method to find where in the bookmarks array the bookmark.id matches the passed in id
   console.log("find bookmark by id function working");
-  let found = store.bookmarks.find((bookmark) => bookmark.id === id);
+  let found = STORE.bookmarks.find((bookmark) => bookmark.id === id);
   console.log(`this is before the click: ${found.expanded}`);
   return found;
 };
@@ -536,15 +539,53 @@ const expandBookmarkToggle = function (id) {
 const deleteBookmarkObject = function (id) {
   console.log("delete bookmark function called");
   let bookmarkRemove = findBookmarkById(id);
-  store.bookmarks.splice(bookmarkRemove, 1);
+  STORE.bookmarks.splice(bookmarkRemove, 1);
 };
+
+// API FUNCTIONS FOR GET AND POST REQUESTS
+
+// declare and assign a variable for the api base url
+const BASE_URL = "https://thinkful-list-api.herokuapp.com/elina/bookmarks";
+
+// write a function that sends a delete request to the server, that will delete the bookmark from the server
+const deleteBookmarkAPI = function () {};
+
+// write a function that sends a get request to the api, to get the bookmarks
+const getBookmarksAPI = function () {};
+
+// write a function that sends a post request to the api, that stores bookmark in the server
+const postBookmarkAPI = function (object) {
+  console.log("post api function running");
+  // this function needs to be triggered when the form is submitted
+  // this function needs to take in the object data when the input form is submitted
+  // the data from the object needs to be converted to JSON
+  let newBookmarkJSON = JSON.stringify(createBookmarkObject());
+  console.log(newBookmarkJSON);
+  debugger;
+  // using the base url and fetch, a post request needs to be sent to the API server with the correct headers and request body in the form of JSON data
+  const params = {
+    headers: { "Content-Type": "application/json" },
+    body: newBookmarkJSON,
+    method: "POST",
+  };
+
+  fetch(BASE_URL, params)
+    .then((data) => {
+      return data.json();
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((error) => console.log(error));
+};
+
 // RENDER FUNCTION
 const render = function () {
   // if there is an error on the form, generate and give to dom
   if (
-    store.error === "title" &&
-    store.adding === false &&
-    store.filtering === false
+    STORE.error === "title" &&
+    STORE.adding === false &&
+    STORE.filtering === false
   ) {
     console.log("render error form working");
     let html = "";
@@ -552,7 +593,7 @@ const render = function () {
     $("section").html(html);
   }
   // if adding state is true, generate html for form and give to the dom
-  if (store.adding === true) {
+  if (STORE.adding === true) {
     console.log("render form function working");
     $(".top-button").empty();
     // create empty string for html
@@ -563,14 +604,14 @@ const render = function () {
     $("section").html(html);
   }
   // if filter has been selected value would be greater than 0
-  if (store.filtering === true && store.filter > 0) {
+  if (STORE.filtering === true && STORE.filter > 0) {
     console.log("rendering filter list function");
     let html = "";
     html = generateFilterList();
     $("section").html(html);
   }
   // if filtering state is true, generate html for dropdown and give to dom
-  if (store.filtering === true && store.filter <= 0) {
+  if (STORE.filtering === true && STORE.filter <= 0) {
     console.log("render filter function working");
     // set html to empty string
     let html = "";
@@ -583,11 +624,11 @@ const render = function () {
   }
   // if adding state is false and filtering state is false, generate the home screen html
   if (
-    store.adding === false &&
-    store.filtering === false &&
-    store.error === null
+    STORE.adding === false &&
+    STORE.filtering === false &&
+    STORE.error === null
   ) {
-    console.log("render home/bookmark store function working");
+    console.log("render home/bookmark STORE function working");
     // use jquery to replace existing html with html for the home state
     let html = "";
     html = generateBookmarksString();
