@@ -76,11 +76,10 @@ const handleCancelClick = function () {
 };
 
 const handleCreateItemClick = function () {
-  $("main").on("click", ".create", function () {
+  $("main").on("submit", ".form-submit", function (event) {
+    console.log("click function working");
+    event.preventDefault();
     store.STORE.error = null;
-    event.preventDefault();
-    event.preventDefault();
-    event.preventDefault();
     // store.formErrorState();
     store.STORE.adding = false;
     store.STORE.filtering = false;

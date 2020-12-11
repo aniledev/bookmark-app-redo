@@ -11,13 +11,13 @@ const generateAddForm = function () {
     <h1>myMarks</h1>
   </div><div id="form" class="form">
     <h3>Add a new bookmark</h3>
-    <form id="form" class="form" action="" method="" enctype="">
+    <form id="form-submit" class="form-submit" >
       <label for="bookmark-title">Title</label>
       <input
        type="text"
         id="bookmark-title"
         class="bookmark-title"
-        name="bookmark-title"
+        name="bookmark-title" minlength="1"
         placeholder="Awesome Bookmark Site" required
       />
       <label for="url">URL</label>
@@ -25,7 +25,7 @@ const generateAddForm = function () {
        type="text"
         id="url"
         class="url"
-        name="url"
+        name="url" minlength="5"
         placeholder="https://www.samplesite.com" 
         required/>
       <label for="rating">Rating</label>
@@ -50,12 +50,13 @@ const generateAddForm = function () {
         rows="10"
         placeholder="Enter a description (optional)"
       ></textarea>
-    </form>
-  </div>
-  <div class="bottom-button">
+      <div class="bottom-button">
     <button type="text" id="cancel" class="cancel">Cancel</button>
     <input type="submit" id="create" class="create" value="Create"></input>
-  </div>`;
+  </div>
+    </form>
+  </div>
+  `;
 };
 
 const generateFilterDropdown = function () {
