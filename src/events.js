@@ -1,8 +1,6 @@
 // THIS MODULE ONLY CONTAINS EVENT HANDLERS
 import $ from "jquery";
-import cuid from "cuid";
 import api from "./api";
-import events from "./events";
 import index from "./index";
 import store from "./store";
 import templates from "./templates";
