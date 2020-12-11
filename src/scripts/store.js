@@ -42,6 +42,7 @@ const addNewBookmark = function () {
 
     console.log(newBookmark);
     api.postBookmarkAPI(newBookmark).then((data) => {
+      console.log(data);
       data.expanded = false;
       data.filtered = false;
       store.STORE.bookmarks.push(data);

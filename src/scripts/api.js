@@ -62,7 +62,12 @@ const postBookmarkAPI = function (newBookmark) {
 
   return fetch(BASE_URL, params)
     .then((data) => {
-      return data.json();
+      console.log(data);
+      if (data.ok == false) {
+        alert("Title and URL are required");
+      } else {
+        return data.json();
+      }
     })
     .catch((error) => console.log(error));
 };
