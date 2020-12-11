@@ -21,7 +21,6 @@ const render = function () {
   // }
   // if adding state is true, generate html for form and give to the dom
   if (store.STORE.adding === true) {
-    console.log("render form function working");
     $(".top-button").empty();
     // create empty string for html
     let html = "";
@@ -32,14 +31,12 @@ const render = function () {
   }
   // if filter has been selected value would be greater than 0
   if (store.STORE.filtering === true && store.STORE.filter > 0) {
-    console.log("rendering filter list function");
     let html = "";
     html = templates.generateFilterList();
     $("section").html(html);
   }
   // if filtering state is true, generate html for dropdown and give to dom
   if (store.STORE.filtering === true && store.STORE.filter <= 0) {
-    console.log("render filter function working");
     // set html to empty string
     let html = "";
     // assign html to filter dropdown template
@@ -55,7 +52,6 @@ const render = function () {
     store.STORE.filtering === false &&
     store.STORE.error === null
   ) {
-    console.log("render home/bookmark STORE function working");
     // use jquery to replace existing html with html for the home state
     let html = "";
     html = templates.generateBookmarksString();

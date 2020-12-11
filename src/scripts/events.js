@@ -77,7 +77,6 @@ const handleCancelClick = function () {
 
 const handleCreateItemClick = function () {
   $("main").on("submit", ".form-submit", function (event) {
-    console.log("click function working");
     event.preventDefault();
     store.STORE.error = null;
     // store.formErrorState();
