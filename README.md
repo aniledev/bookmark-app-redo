@@ -2,6 +2,5 @@ Bookmark app using jQuery and an API
 
 ### Upcoming Features
 
-- Ability to update bookmark description and title
-- API functionality
-- Change color of the stars
+- User can update rating and description input
+- Expand all/Collapse all button at the top of the home page
