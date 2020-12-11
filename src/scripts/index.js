@@ -1,5 +1,3 @@
-"use strict";
-
 import $ from "jquery";
 import cuid from "cuid";
 //  EXAMPLE STORE DATA SINGLE SOURCE OF TRUTH
