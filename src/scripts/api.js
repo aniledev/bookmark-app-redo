@@ -9,18 +9,12 @@ import templates from "./templates";
 
 const BASE_URL = "https://thinkful-list-api.herokuapp.com/elina/bookmarks";
 
-// write a function that sends a delete request to the server, that will delete the bookmark from the server
 const deleteBookmarkAPI = function (id) {
   console.log("delete api function running");
-  // creating necessary params for API call
 
   return fetch(`${BASE_URL}/${id}`, {
     method: "DELETE",
   });
-  // .then((response) => {
-  //   return response.json();
-  // })
-  // .catch((error) => console.log(error));
 };
 
 const getBookmarksAPI = function () {
@@ -64,7 +58,7 @@ const postBookmarkAPI = function (newBookmark) {
     .then((data) => {
       console.log(data);
       if (data.ok == false) {
-        alert("Title and URL are required");
+        alert("Title and https:// URL are required");
       } else {
         return data.json();
       }

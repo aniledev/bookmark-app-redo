@@ -14,28 +14,27 @@ const generateAddForm = function () {
     <form id="form" class="form" action="" method="" enctype="">
       <label for="bookmark-title">Title</label>
       <input
-      required type="text"
+       type="text"
         id="bookmark-title"
         class="bookmark-title"
         name="bookmark-title"
-        placeholder="Awesome Bookmark Site" 
+        placeholder="Awesome Bookmark Site" required
       />
       <label for="url">URL</label>
       <input
-      required type="text"
+       type="text"
         id="url"
         class="url"
         name="url"
         placeholder="https://www.samplesite.com" 
-      />
+        required/>
       <label for="rating">Rating</label>
       <select
-      required id="rating"
+       id="rating"
         name="rating"
         type="number"
         class="rating"
-        placeholder="3" 
-      >
+        placeholder="Rating optional" >
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -93,19 +92,14 @@ const generateFilterDropdown = function () {
 };
 
 const generateFilterList = function (object) {
-  console.log("filtered list function");
-
   const filteredBookmarks = store.STORE.bookmarks.filter(
     (element) => element.rating >= store.STORE.filter
   );
-  console.log(store.STORE.bookmarks);
-  console.log(store.STORE.filter);
-  console.log(filteredBookmarks);
 
   const filteredBookmarkString = filteredBookmarks.map((element) =>
     generateNewBookmark(element)
   );
-  console.log(filteredBookmarkString.join(""));
+
   return `<div>
     <h1>myMarks</h1>
   </div><div class="top-button button">
@@ -136,7 +130,6 @@ const generateFilterList = function (object) {
 };
 
 const generateNewBookmark = function (object) {
-  console.log("single bookmark generated function");
   let starRating = generateStars(object);
   return `<div >
     <div id="item-title" class="item-title" data-clicked-id="${object.id}">
@@ -149,7 +142,6 @@ const generateNewBookmark = function (object) {
 };
 
 const generateNewBookmarkExpanded = function (object) {
-  console.log("single expanded bookmark generated function");
   let starRating = generateStars(object);
   return `<div>
     <div id="item-title" class="item-title" data-clicked-id="${object.id}">
@@ -169,7 +161,6 @@ const generateNewBookmarkExpanded = function (object) {
 };
 
 const generateBookmarksString = function (object) {
-  console.log("bookmark string function");
   const bookmarks = store.STORE.bookmarks.map((element) => {
     if (element.expanded === false) {
       return generateNewBookmark(element);
@@ -177,7 +168,6 @@ const generateBookmarksString = function (object) {
       return generateNewBookmarkExpanded(element);
     }
   });
-  console.log(bookmarks.join(""));
   return `<div><h1>myMarks</h1></div><div class="top-button button">
     <button id="new" class="new">
       <i class="fas fa-plus fa-xs"></i> New
@@ -200,7 +190,6 @@ const generateStars = function (object) {
   starRating =
     starsCheckedTemplate.repeat(starsChecked) +
     starsUncheckedTemplate.repeat(starsUnchecked);
-  console.log(starRating);
   return starRating;
 };
 

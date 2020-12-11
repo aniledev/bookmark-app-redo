@@ -16,7 +16,6 @@ let STORE = {
 };
 
 const createBookmarkObject = function () {
-  console.log("create object function working");
   const rating = $(".rating").val();
   const url = $(".url").val();
   const description = $(".description").val();
@@ -29,24 +28,17 @@ const createBookmarkObject = function () {
     desc: description,
   };
 
-  console.log(object);
   return object;
 };
 
-console.log(createBookmarkObject());
-
 const addNewBookmark = function () {
   if (store.STORE.error != "title") {
-    console.log("add bookmark function invoked");
     let newBookmark = store.createBookmarkObject();
 
-    console.log(newBookmark);
     api.postBookmarkAPI(newBookmark).then((data) => {
-      console.log(data);
       data.expanded = false;
       data.filtered = false;
       store.STORE.bookmarks.push(data);
-      console.log(store.STORE.bookmarks);
       index.render();
     }); // once the object is created the bookmark can be stringified and sent as a post requeest in the proper format
     // once the object is created then send a post request to the api
@@ -67,28 +59,20 @@ const addNewBookmark = function () {
 // };
 
 const findBookmarkById = function (id) {
-  console.log("find bookmark by id function working");
   let found = store.STORE.bookmarks.find((bookmark) => bookmark.id == id);
-  console.log(`this is before the click: ${found.expanded}`);
   return found;
 };
 
 const expandBookmarkToggle = function (id) {
-  console.log("expand book function called");
   let found = store.findBookmarkById(id);
   found.expanded = !found.expanded;
-  console.log(`this is after the click: ${found.expanded}`);
-  console.log("bookmark expand toggled");
 };
 
 const deleteBookmarkObject = function (id) {
-  console.log("delete bookmark function called");
   debugger;
   let bookmarkRemove = store.findBookmarkById(id);
   let remove = JSON.stringify(bookmarkRemove);
   let index = store.STORE.bookmarks.indexOf(bookmarkRemove);
-  console.log(index);
-  console.log(`this is the bookmark to remove ${remove}`);
 
   store.STORE.bookmarks.splice(index, 1);
 };
