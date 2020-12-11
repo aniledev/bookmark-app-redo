@@ -65,14 +65,7 @@ const render = function () {
 
 function main() {
   api.getBookmarksAPI();
-  events.handleNewButtonClick();
-  events.handleCancelClick();
-  events.handleCreateItemClick();
-  events.handleFilterClick();
-  events.handleFilterDropdown();
-  events.handleClearFilterClick();
-  events.handleBookmarkClick();
-  events.handleDeleteItemClick();
+  events.eventHandlers();
 }
 // this function is the only function that stays in the index.js file once you modularize the tile structure
 

@@ -138,13 +138,17 @@ const handleCreateItemClick = function () {
   });
 };
 
+function eventHandlers() {
+  handleNewButtonClick();
+  handleFilterClick();
+  handleFilterDropdown();
+  handleDeleteItemClick();
+  handleClearFilterClick();
+  handleBookmarkClick();
+  handleCancelClick();
+  handleCreateItemClick();
+}
+
 export default {
-  handleNewButtonClick,
-  handleFilterClick,
-  handleFilterDropdown,
-  handleDeleteItemClick,
-  handleClearFilterClick,
-  handleBookmarkClick,
-  handleCancelClick,
-  handleCreateItemClick,
+  eventHandlers,
 };
