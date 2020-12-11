@@ -64,9 +64,13 @@ const generateAddForm = function () {
 };
 
 const generateFilterDropdown = function () {
-  const bookmarks = store.STORE.bookmarks.map((element) =>
-    generateNewBookmark(element)
-  );
+  const bookmarks = store.STORE.bookmarks.map((element) => {
+    if (element.expanded === false) {
+      return generateNewBookmark(element);
+    } else {
+      return generateNewBookmarkExpanded(element);
+    }
+  });
   return `<div>
     <h1>myMarks</h1>
   </div><div class="top-button button">
