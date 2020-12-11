@@ -5,6 +5,10 @@ import events from "./events";
 import index from "./index";
 import store from "./store";
 import templates from "./templates";
+// import "font-awesome";ç
+// import { config } from "font-awesome";
+
+// config.autoA11y = true;
 
 const generateAddForm = function () {
   return `<div>

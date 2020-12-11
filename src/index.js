@@ -5,6 +5,7 @@ import events from "./events";
 import index from "./index";
 import store from "./store";
 import templates from "./templates";
+import "./styles.css";
 
 // RENDER FUNCTION
 const render = function () {
