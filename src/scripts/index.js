@@ -9,16 +9,16 @@ import templates from "./templates";
 // RENDER FUNCTION
 const render = function () {
   // if there is an error on the form, generate and give to dom
-  if (
-    store.STORE.error === "title" &&
-    store.STORE.adding === false &&
-    store.STORE.filtering === false
-  ) {
-    console.log("render error form working");
-    let html = "";
-    html = templates.generateFormError();
-    $("section").html(html);
-  }
+  // if (
+  //   store.STORE.error === "title" &&
+  //   store.STORE.adding === false &&
+  //   store.STORE.filtering === false
+  // ) {
+  //   console.log("render error form working");
+  //   let html = "";
+  //   html = templates.generateFormError();
+  //   $("section").html(html);
+  // }
   // if adding state is true, generate html for form and give to the dom
   if (store.STORE.adding === true) {
     console.log("render form function working");

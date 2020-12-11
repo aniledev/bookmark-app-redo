@@ -7,17 +7,15 @@ import store from "./store";
 import templates from "./templates";
 
 // THIS MODULE ONLY CONTAINS STORE VARIABLE AND FUNCTIONS THAT CHANGE THE STATE OF THE STORE
-//  EXAMPLE STORE DATA SINGLE SOURCE OF TRUTH
 let STORE = {
   bookmarks: [],
-  adding: false, // is the new bookmark form showing or not?
-  filtering: false, // is the dropdown box for filtering showing or not?
-  filter: 0, // what rating  are we filtering for?
-  error: null, // is there an error on the new bookmark form or not?
+  adding: false,
+  filtering: false,
+  filter: 0,
+  error: null,
 };
 
 const createBookmarkObject = function () {
-  // this function will take in values from the form and create a new object that can be pushed to the STORE data
   console.log("create object function working");
   const rating = $(".rating").val();
   const url = $(".url").val();
@@ -38,11 +36,9 @@ const createBookmarkObject = function () {
 console.log(createBookmarkObject());
 
 const addNewBookmark = function () {
-  // this function needs to push the API data not the const STORE data
   if (store.STORE.error != "title") {
     console.log("add bookmark function invoked");
-    // invoke factory function when submit is clicked, factory function returns an object to push to the STORE
-    let newBookmark = store.createBookmarkObject(); // object needs tp be created first
+    let newBookmark = store.createBookmarkObject();
 
     console.log(newBookmark);
     api.postBookmarkAPI(newBookmark).then((data) => {
@@ -60,17 +56,16 @@ const addNewBookmark = function () {
   }
 };
 
-const formErrorState = function () {
-  if ($(".bookmark-title").val() === "") {
-    store.STORE.error = "title";
-  }
-  if ($(".bookmark-title").val() != "") {
-    store.STORE.error = null;
-  }
-};
+// const formErrorState = function () {
+//   if ($(".bookmark-title").val() === "") {
+//     store.STORE.error = "title";
+//   }
+//   if ($(".bookmark-title").val() != "") {
+//     store.STORE.error = null;
+//   }
+// };
 
 const findBookmarkById = function (id) {
-  // using the find array method to find where in the bookmarks array the bookmark.id matches the passed in id
   console.log("find bookmark by id function working");
   let found = store.STORE.bookmarks.find((bookmark) => bookmark.id == id);
   console.log(`this is before the click: ${found.expanded}`);
@@ -101,7 +96,7 @@ export default {
   STORE,
   createBookmarkObject,
   addNewBookmark,
-  formErrorState,
+  // formErrorState,
   findBookmarkById,
   expandBookmarkToggle,
   deleteBookmarkObject,
