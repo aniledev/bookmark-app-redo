@@ -12,6 +12,7 @@ let STORE = {
   error: null,
 };
 
+// factory function used to send form inputs to API
 const createBookmarkObject = function () {
   const rating = $(".rating").val();
   const url = $(".url").val();
@@ -28,7 +29,7 @@ const createBookmarkObject = function () {
   return object;
 };
 
-const addNewBookmark = function () {
+const addNewBookmarkStore = function () {
   if (store.STORE.error != "title") {
     let newBookmark = store.createBookmarkObject();
 
@@ -51,7 +52,7 @@ const expandBookmarkToggle = function (id) {
   found.expanded = !found.expanded;
 };
 
-const deleteBookmarkObject = function (id) {
+const deleteBookmarkStore = function (id) {
   let bookmarkRemove = store.findBookmarkById(id);
   let index = store.STORE.bookmarks.indexOf(bookmarkRemove);
   store.STORE.bookmarks.splice(index, 1);
@@ -60,8 +61,8 @@ const deleteBookmarkObject = function (id) {
 export default {
   STORE,
   createBookmarkObject,
-  addNewBookmark,
+  addNewBookmarkStore,
   findBookmarkById,
   expandBookmarkToggle,
-  deleteBookmarkObject,
+  deleteBookmarkStore,
 };

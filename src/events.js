@@ -35,7 +35,7 @@ const handleDeleteItemClick = function () {
     store.STORE.filtering === false;
     store.STORE.error === null;
     const DeleteId = $(this).attr("data-clicked-id");
-    store.deleteBookmarkObject(DeleteId);
+    store.deleteBookmarkStore(DeleteId);
     api.deleteBookmarkAPI(DeleteId);
     templates.generateBookmarksString();
     index.render();
@@ -53,7 +53,6 @@ const handleClearFilterClick = function () {
 
 const handleBookmarkClick = function () {
   $("main").on("click", ".item-title", function () {
-    console.log("bookmark clicked");
     event.preventDefault();
     store.STORE.adding === false;
     store.STORE.error === null;
@@ -77,10 +76,9 @@ const handleCreateItemClick = function () {
   $("main").on("submit", ".form-submit", function (event) {
     event.preventDefault();
     store.STORE.error = null;
-    // store.formErrorState();
     store.STORE.adding = false;
     store.STORE.filtering = false;
-    store.addNewBookmark(); // this fucntion will call addNewBookmark() as well as createBookmarkObject()
+    store.addNewBookmarkStore();
   });
 };
 

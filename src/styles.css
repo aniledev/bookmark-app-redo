@@ -1,12 +1,10 @@
 section {
-  /* border: 2px black solid; */
   margin: 40px;
   padding-left: 15px;
   padding-right: 15px;
 }
 
 div {
-  /* border: 1px lightslategray solid; */
   border-radius: 10px;
   border: 1px white solid;
 }
@@ -85,8 +83,6 @@ h1 {
 h3 {
   background-color: #1fad9d;
   border-radius: 3px;
-  /* margin-top: 5px;
-  margin-bottom: 5px; */
   text-align: left;
   padding-left: 10px;
 }
@@ -97,10 +93,6 @@ div#ratings-selection.ratings {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
-/* .form {
-    margin-bottom: 10px;
-  } */
 
 form {
   display: flex;
@@ -155,7 +147,6 @@ div p#description-text {
 /* Media query for desktop CSS declarations */
 @media all and (min-width: 600px) {
   section {
-    /* border: 2px black solid; */
     padding-left: 15px;
     padding-right: 15px;
     width: 50%;
