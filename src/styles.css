@@ -22,10 +22,11 @@ button {
   border-radius: 5px;
   width: 75px;
   height: 25px;
+  border: none;
 }
 
 button.new {
-  color: white;
+  color: whitesmoke;
   background-color: #1fad9d;
 }
 
@@ -36,11 +37,12 @@ button.new:hover {
 
 button.new:active {
   background-color: #40ddcb;
+  color: black;
 }
 
 button.filter {
   background-color: #3297fc;
-  color: white;
+  color: whitesmoke;
 }
 
 button.filter:focus,
@@ -53,34 +55,42 @@ button.filter:active {
 }
 
 button.clear-filter,
-button.cancel {
+button.cancel,
+button.delete {
   background-color: #fe654f;
-  color: white;
+  color: whitesmoke;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-button.cancel,
-button.delete {
-  background-color: #fe654f;
+button.clear-filter:focus,
+button.cancel:focus,
+button.clear-filter:hover,
+button.cancel:hover,
+button.delete:hover,
+button.delete:focus {
+  background-color: #cb1c01;
+  color: whitesmoke;
+}
+
+button.clear-filter:active,
+button.cancel:active,
+button.delete:active {
+  background-color: #fe9585;
   color: black;
 }
 
-button.site-link,
-button.delete {
-  width: 58px;
-  height: 20px;
-}
 button.site-link {
   background-color: #afafdc;
 }
 
 input[type="submit"] {
   background-color: #3297fc;
-  color: white;
+  color: whitesmoke;
   border-radius: 5px;
   width: 75px;
   height: 25px;
+  border: none;
 }
 
 input[type="submit"]:focus,
@@ -106,10 +116,10 @@ h1 {
 }
 
 h3 {
-  background-color: #1fad9d;
   border-radius: 3px;
   text-align: left;
   padding-left: 10px;
+  color: whitesmoke;
 }
 
 div#ratings-selection.ratings {
@@ -129,16 +139,9 @@ label {
   text-align: left;
 }
 
-input[class="error-placeholder"]::placeholder {
-  color: orange;
-}
-
-textarea[class="error-placeholder"]::placeholder {
-  color: orange;
-}
-
 .link {
   color: black;
+  text-decoration-line: none;
 }
 
 .flex {
@@ -153,12 +156,16 @@ textarea[class="error-placeholder"]::placeholder {
 
 .flex p {
   flex: 1;
-  background-color: #1fad9d;
   border-radius: 3px;
 }
 
 div.title-rating {
   background-color: #1fad9d;
+}
+
+div#title-rating:focus,
+div#title-rating:hover {
+  background-color: #188c80;
 }
 
 i.fa-star {

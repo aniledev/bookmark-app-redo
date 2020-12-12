@@ -133,7 +133,7 @@ const generateFilterList = function () {
 const generateNewBookmark = function (object) {
   let starRating = generateStars(object);
   return `<div>
-    <div id="item-title" class="item-title" data-clicked-id="${object.id}">
+    <div tabindex="0" id="item-title" class="item-title" data-clicked-id="${object.id}">
     <div id="title-rating" class="title-rating flex">
     <h3>${object.title}</h3>
     <p>${starRating}</p>
@@ -145,7 +145,7 @@ const generateNewBookmark = function (object) {
 const generateNewBookmarkExpanded = function (object) {
   let starRating = generateStars(object);
   return `<div>
-    <div id="item-title" class="item-title" data-clicked-id="${object.id}">
+    <div tabindex="0" id="item-title" class="item-title" data-clicked-id="${object.id}">
     <div id="title-rating" class="title-rating flex">
     <h3>${object.title}</h3>
     <p>${starRating}</p>
