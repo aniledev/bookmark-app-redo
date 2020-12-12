@@ -9,7 +9,7 @@ div {
   border: 1px white solid;
 }
 
-div.top-button {
+.top-button {
   margin-bottom: 15px;
 }
 
@@ -123,7 +123,7 @@ a:visited {
   color: whitesmoke;
 }
 
-div.indented {
+.indented {
   padding-top: 10px;
   margin-left: 20px;
 }
@@ -143,9 +143,9 @@ h3 {
   color: whitesmoke;
 }
 
-div#ratings-selection.ratings {
+#ratings-selection {
   margin: auto;
-  width: 16%;
+  width: 18%;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -156,12 +156,12 @@ form {
 }
 
 label {
-  margin: 8px 0px;
+  margin: 8px 0;
   text-align: left;
 }
 
 .link {
-  text-decoration-line: none;
+  text-decoration: none;
 }
 
 .flex {
@@ -188,11 +188,11 @@ div#title-rating:hover {
   background-color: #188c80;
 }
 
-i.fa-star {
+.fa-star {
   color: #f0c732;
 }
 
-div p#description-text {
+#description-text {
   padding: 0;
 }
 
