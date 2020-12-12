@@ -80,10 +80,6 @@ button.delete:active {
   color: black;
 }
 
-button.site-link {
-  background-color: #afafdc;
-}
-
 input[type="submit"] {
   background-color: #3297fc;
   color: whitesmoke;
@@ -100,6 +96,17 @@ input[type="submit"]:hover {
 
 input[type="submit"]:active {
   background-color: #5eadfd;
+}
+
+a:link {
+  border-radius: 5px;
+  background-color: blue;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 23px;
+  padding-left: 23px;
+  /* padding-bottom: 2.75px;
+  padding-left: 28px; */
 }
 
 div.indented {
