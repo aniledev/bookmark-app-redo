@@ -1,12 +1,14 @@
 section {
-  border: 2px black solid;
+  /* border: 2px black solid; */
   margin: 40px;
   padding-left: 15px;
   padding-right: 15px;
 }
 
 div {
-  border: 1px lightslategray solid;
+  /* border: 1px lightslategray solid; */
+  border-radius: 10px;
+  border: 1px white solid;
 }
 
 div.top-button {
@@ -86,6 +88,7 @@ h3 {
   /* margin-top: 5px;
   margin-bottom: 5px; */
   text-align: left;
+  padding-left: 10px;
 }
 
 div#ratings-selection.ratings {
@@ -145,14 +148,21 @@ i.fa-star {
   color: #f0c732;
 }
 
+div p#description-text {
+  padding: 0;
+}
+
 /* Media query for desktop CSS declarations */
 @media all and (min-width: 600px) {
   section {
-    border: 2px black solid;
+    /* border: 2px black solid; */
     padding-left: 15px;
     padding-right: 15px;
     width: 50%;
     margin: auto;
     margin-bottom: 40px;
+  }
+  div p {
+    padding-left: 80px;
   }
 }
