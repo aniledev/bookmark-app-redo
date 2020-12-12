@@ -100,13 +100,27 @@ input[type="submit"]:active {
 
 a:link {
   border-radius: 5px;
-  background-color: blue;
+  background-color: #7b435b;
+  color: whitesmoke;
   padding-top: 4px;
   padding-bottom: 4px;
   padding-right: 23px;
   padding-left: 23px;
   /* padding-bottom: 2.75px;
   padding-left: 28px; */
+}
+
+a:hover,
+a:focus {
+  background-color: #5c3345;
+}
+a:active {
+  background-color: #dbbdca;
+  color: black;
+}
+
+a:visited {
+  color: whitesmoke;
 }
 
 div.indented {
@@ -147,7 +161,6 @@ label {
 }
 
 .link {
-  color: black;
   text-decoration-line: none;
 }
 
