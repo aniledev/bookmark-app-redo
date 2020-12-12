@@ -52,14 +52,16 @@ const handleClearFilterClick = function () {
 };
 
 const handleBookmarkClick = function () {
-  $("main").on("click", ".item-title", function () {
-    event.preventDefault();
-    store.STORE.adding === false;
-    store.STORE.error === null;
-    const clickedId = $(this).attr("data-clicked-id");
-    store.expandBookmarkToggle(clickedId);
-    templates.generateBookmarksString();
-    index.render();
+  $("main").on("click keypress", ".item-title", function () {
+    if (event.keyCode === 13 || event.type === "click") {
+      event.preventDefault();
+      store.STORE.adding === false;
+      store.STORE.error === null;
+      const clickedId = $(this).attr("data-clicked-id");
+      store.expandBookmarkToggle(clickedId);
+      templates.generateBookmarksString();
+      index.render();
+    }
   });
 };
 
